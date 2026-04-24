@@ -7,21 +7,20 @@ ENV MANIM_NO_MACROS=1
 
 WORKDIR /app
 
-# Added dvisvgm to the system dependencies
+# Replaced the bloated fonts-extra with fonts-recommended
 RUN apt-get update && apt-get install -y --no-install-recommends \
     ffmpeg \
     libcairo2-dev \
     libpango1.0-dev \
     texlive \
     texlive-latex-extra \
-    texlive-fonts-extra \
+    texlive-fonts-recommended \
     texlive-latex-recommended \
     texlive-science \
     tipa \
     dvisvgm \
     build-essential \
     && rm -rf /var/lib/apt/lists/*
-
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
