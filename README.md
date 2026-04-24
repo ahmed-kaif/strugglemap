@@ -1,6 +1,3 @@
-Here is a clean, hackathon-ready `README.md` formatted specifically for your local development environment. You can copy and paste this directly into your repository so the rest of your team (and the judges) know exactly how to spin up the AI backend.
-
-```markdown
 # StruggleMap — AI Math Animation Pipeline 🚀
 
 This is the backend rendering engine for **StruggleMap**, built to dynamically generate localized, Manim-based mathematical animations using multi-agent LLM workflows. 
