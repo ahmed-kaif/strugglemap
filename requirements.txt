@@ -1,0 +1,14 @@
+# Web Framework
+fastapi>=0.110.0
+uvicorn[standard]>=0.29.0
+pydantic>=2.7.0
+
+# AI & Orchestration
+google-cloud-aiplatform>=1.48.0
+langchain>=0.2.0
+langchain-core>=0.2.0
+langchain-google-vertexai>=1.0.5
+langgraph>=0.0.69
+
+# Rendering Engine (Strict)
+manim==0.18.0
