@@ -35,7 +35,7 @@ async def generate_lesson(topic: str):
     chain = breakdown_prompt | breakdown_agent
     breakdown_result = chain.invoke({"topic": topic})
     
-    # --- AGENT 2: The Manim Coder ---
+# --- AGENT 2: The Manim Coder ---
     coder_prompt = ChatPromptTemplate.from_template(
         "You are an expert Python developer specializing in the Manim Community library. "
         "Write executable Manim code to animate the following mathematical steps: {steps}. "
@@ -43,8 +43,15 @@ async def generate_lesson(topic: str):
         "IMPORTANT RULES: "
         "1. Output ONLY pure Python code. No markdown formatting, no explanations. "
         "2. The main class MUST be named exactly 'MathScene'."
-        "3. Keep animations simple (Create, Write, FadeIn) and stick to 2D math objects."
+        "3. Keep animations simple (Create, Write, FadeIn) and stick to 2D math objects. "
+        "4. STRICT POSITIONING RULE: To position objects, you MUST ONLY use standard Manim "
+        "methods: .move_to(), .next_to(), .shift(), .to_edge(), or .to_corner(). "
+        "NEVER invent or use undocumented methods like .at_self_point() or .set_position(). "
+        "5. STRICT COORDINATE RULE: Manim requires 3D vectors for everything. If you use lists "
+        "or arrays for coordinates, they MUST have 3 elements (e.g., [x, y, 0]). NEVER use 2D "
+        "coordinates like [x, y]. Prefer built-in constants like ORIGIN, UP, DOWN, LEFT, RIGHT."
     )
+
     coder_chain = coder_prompt | pro_model
     manim_code_response = coder_chain.invoke({
         "steps": breakdown_result.sub_topics,
